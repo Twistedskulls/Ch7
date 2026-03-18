@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html ng-app="Converter">
+    <head>
+        <title>A Very Angular Temperature Converter</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
+    </head>
+    <body>
+       <div ng-controller="tempCtrlr">
+        <h2>Enter a temperature in either input box to convert it to the cooresponding temperature</h2>
+        <div>
+            Fahrenheit <input ng-model="f" ng-change="calculateC()" type='number'>
+        </div>
+        <div>
+            Celcius <input ng-model="c" ng-change="calculateF()" type='number'>
+        </div>
+        </div>
+		<script>
+            var ngConverterApp = angular.module('converter', []);
+            ngConverterApp.controller('tempCtrlr', function ($scope)
+            {
+                $scope.c = 0;
+                $scope.f = 0;
+                $scope.calculateC = function()
+                {
+                    $scope.c = Number((($scope.f - 32) * (5/9)).toFixed(1));
+                }
+                $scope.calculateF = function()
+                {
+                    $scope.f = Number((($scope.c * (9/5)) + 32).toFixed(1));
+                }
+            });
+		</script> 
+        
+    </body>
+</html>
