@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>A Very React Temperature Converter</title>
+        <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+		<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    </head>
+    <body>
+       <div id='display'></div>
+
+		<script>
+            function Calculator()
+            {
+                const [temp, calcTemp] = React.useState({ c_temp: 0, f_temp: 0 })
+                const updateF = evt => calcTemp({
+                    f_temp: evt.target.value,
+                    c_temp: ((evt.target.value - 32) * (5/9)).toFixed(1)
+                })
+                const updateC = evt => calcTemp({
+                    c_temp: evt.target.value,
+                    f_temp: ((evt.target.value * (9/5)) + 32).toFixed(1)
+                })
+                return (
+                    <div id="converter">
+                        <h2>Enter a temperature in either input box to convert it to the corresponding temperature</h2>
+                        
+                        <div>
+                            Fahrenheit <input type='number' value = {temp.f_temp} onChange = {updateF} />
+                            </div>
+                            <div>
+                                Celsius <input type='number' value = {temp.c_temp} onChange = {updateC}/>
+
+                                </div>
+                            </div>
+                )
+            }
+            const rootElement = document.getElementById('display')
+            ReactDOM.render(<Calculator />, rootElement)
+		</script> 
+        
+    </body>
+</html>
